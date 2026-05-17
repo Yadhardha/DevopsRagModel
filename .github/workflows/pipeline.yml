@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pipeline-logs
-          path: .github/workflows/pipeline.log
+          path: pipeline.log
