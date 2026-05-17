@@ -1,17 +1,20 @@
-- name: Devops Rag Model
-  on:
-    push:
-      branches:
-        - main
+name: DevOps RAG Model
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Run sample command
         run: echo "pipeline running"
-      - name: sample error
+
+      - name: Sample error
         run: exit 1
