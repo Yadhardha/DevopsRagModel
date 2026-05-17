@@ -1,4 +1,5 @@
 name: DevOps RAG Model
+
 on:
   push:
     branches:
@@ -11,20 +12,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
 
-      - name: Run sample command
+      - name: Generate logs
         run: |
-          echo "Starting pipeline..." > pipeline.log
-          echo "Running buid stage ..." >> pipeline.log
-          echo "Docker build failed ...">>pipeline.log
-      - name: show files
-        run: ls -a
-      - name: failur
-        run: exit 1
-      - name: upload logs
-        if : always()
+          mkdir -p logs
+
+          echo "Starting pipeline..." > logs/pipeline.log
+          echo "Running build stage ..." >> logs/pipeline.log
+          echo "Docker build failed ..." >> logs/pipeline.log
+
+          echo "===== FILE CONTENT ====="
+          cat logs/pipeline.log
+
+          echo "===== FILES ====="
+          ls -R
+
+          exit 1
+
+      - name: Upload logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pipeline-logs
-          path: pipeline.log
+          path: logs/pipeline.log
