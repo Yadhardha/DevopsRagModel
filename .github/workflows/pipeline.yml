@@ -1,5 +1,4 @@
 name: DevOps RAG Model
-
 on:
   push:
     branches:
@@ -14,7 +13,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run sample command
-        run: echo "pipeline running"
-
-      - name: Sample error
-        run: exit 1
+        run: |
+          echo "Starting pipeline..." > pipeline.log
+          echo "Running buid stage ..." >> pipeline.log
+          echo "Docker build failed ...">>pipeline.log
+          exit 1
+      - name: upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-logs
+          path : pipeline.log
