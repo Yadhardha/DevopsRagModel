@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
 
       - name: Run sample command
         run: |
@@ -18,6 +19,8 @@ jobs:
           echo "Running buid stage ..." >> pipeline.log
           echo "Docker build failed ...">>pipeline.log
           exit 1
+      - name: show files
+        run: ls -a
       - name: upload logs
         if : always()
         uses: actions/upload-artifact@v4
