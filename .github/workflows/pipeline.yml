@@ -13,14 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-    steps:
       - name: Generate logs
         run: |
           mkdir -p logs
-      
+
           echo "Starting pipeline..." > logs/pipeline.log
           echo "Docker build failed ..." >> logs/pipeline.log
-      
+
           exit 1
 
       - name: Upload logs
