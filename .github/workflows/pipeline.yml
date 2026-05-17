@@ -19,6 +19,7 @@ jobs:
           echo "Docker build failed ...">>pipeline.log
           exit 1
       - name: upload logs
+        if : always()
         uses: actions/upload-artifact@v4
         with:
           name: pipeline-logs
